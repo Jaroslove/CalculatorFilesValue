@@ -1,6 +1,6 @@
-﻿namespace Calculator
+﻿namespace Calculator.View
 {
-    partial class Form1
+    partial class ViewCalculator
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ViewCalculator
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(384, 161);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "ViewCalculator";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Calculator";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-

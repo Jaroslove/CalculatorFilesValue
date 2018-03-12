@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Calculator
+namespace Calculator.View
 {
-    public partial class Form1 : Form
+    public partial class ViewCalculator : Form, IViewCalculator
     {
-        public Form1()
+        public ViewCalculator()
         {
             InitializeComponent();
         }
