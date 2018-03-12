@@ -8,5 +8,6 @@ namespace Calculator.View
 {
     interface IViewCalculator
     {
+        string ChosenPath { get; }
     }
 }
