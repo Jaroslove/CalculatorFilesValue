@@ -15,13 +15,39 @@ namespace Calculator.Tests
         private Element element;
 
         [TestCase]
+        public void TotalNumberOfFilesAfterCount()
+        {
+            Element.TotalNumberOfFiles = 0;
+
+            element = new ElementFolder(@"C:\Users\1\Desktop\testCount", new Parser());
+
+            element.Count();
+
+            int actual = Element.TotalNumberOfFiles;
+
+            Assert.AreEqual(TOTALNUMBEROFFILESAFTERCOUNT, actual);
+        }
+
+        [TestCase]
+        public void TotalNumberOfFiles()
+        {
+            Element.TotalNumberOfFiles = 0;
+
+            element = new ElementFolder(@"C:\Users\1\Desktop\testCount", new Parser());
+
+            int actual = Element.TotalNumberOfFiles;
+
+            Assert.AreEqual(TOTALNUMBEROFFILES, actual);
+        }
+
+        [TestCase]
         public void CalculateFolders()
         {
             element = new ElementFolder(@"C:\Users\1\Desktop\testCount", new Parser());
 
             int actual = element.Count();
 
-            Assert.AreEqual(countFolder, actual);
+            Assert.AreEqual(COUNTFOFOLDERS, actual);
         }
 
         [TestCase]
@@ -31,7 +57,7 @@ namespace Calculator.Tests
 
             int actual = element.Count();
 
-            Assert.AreEqual(countFile, actual);
+            Assert.AreEqual(COUNTFILE, actual);
         }
 
         [TestCase]
@@ -59,8 +85,10 @@ namespace Calculator.Tests
         #endregion
 
         #region expection        
-        private int countFolder = 4056;
-        private int countFile = 1016;
+        private const int TOTALNUMBEROFFILESAFTERCOUNT = 0;
+        private const int TOTALNUMBEROFFILES = 5;
+        private const int COUNTFOFOLDERS = 4056;
+        private const int COUNTFILE = 1016;
         private List<int> testListInt = new List<int> { 2424, 232, 34};
         #endregion
     }

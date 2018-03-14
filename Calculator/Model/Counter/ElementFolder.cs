@@ -24,9 +24,10 @@ namespace Calculator.Model.Counter
                     if (File.GetAttributes(item).HasFlag(FileAttributes.Directory))
                     {
                         list.Add(new ElementFolder(item, parser));
-                    }else if (File.Exists(item) && System.IO.Path.GetExtension(item) == ".txt")
+                    }
+                    else if (File.Exists(item) && System.IO.Path.GetExtension(item) == ".txt")
                     {
-                        list.Add(new ElementFile(item, parser));
+                        list.Add(new ElementFile(item, parser)); 
                     }
                 }
             }

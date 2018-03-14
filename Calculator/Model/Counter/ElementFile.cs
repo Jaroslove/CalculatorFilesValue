@@ -8,6 +8,9 @@ namespace Calculator.Model.Counter
 {
     class ElementFile : Element
     {
-        public ElementFile(string path, IParser parser) : base(path, parser) { }        
+        public ElementFile(string path, IParser parser) : base(path, parser)
+        {
+            TotalNumberOfFiles++;
+        }        
     }
 }

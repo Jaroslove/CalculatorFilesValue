@@ -10,12 +10,14 @@ namespace Calculator.Model.Counter
     {
         public string Path { get; set; }
 
+        public static int TotalNumberOfFiles { get; set; } = 0;
+
         private IParser parser;
 
         public Element(string path, IParser parser)
         {
             Path = path;
-            this.parser = parser;
+            this.parser = parser; 
         }
 
         public virtual int Count()
@@ -25,6 +27,8 @@ namespace Calculator.Model.Counter
             int rezult = 0;
 
             list.ForEach(item => { rezult += item; });
+
+            TotalNumberOfFiles--;
 
             return rezult;
         }
