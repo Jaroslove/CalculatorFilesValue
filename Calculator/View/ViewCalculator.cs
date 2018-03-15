@@ -12,10 +12,15 @@ namespace Calculator.View
 {
     public partial class ViewCalculator : Form, IViewCalculator
     {
-        private BackgroundWorker worker;
+        public BackgroundWorker Worker { get; set; }
+        public event EventHandler DoWork;
+
         private string chosenPath;
 
+        //Model.Counter.Element startFolder;
+
         public string ChosenPath { get => chosenPath; }
+        public int CountedValue { get; set; }
 
         public ViewCalculator()
         {
@@ -26,32 +31,52 @@ namespace Calculator.View
 
         private void InitBackWoker()
         {
-            worker = new BackgroundWorker();
+            Worker = new BackgroundWorker()
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true,
+            };
 
-            worker.DoWork += Worker_DoWork;
+            Worker.DoWork += Worker_DoWork;
 
-            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
-            worker.ProgressChanged += Worker_ProgressChanged;
+            Worker.ProgressChanged += Worker_ProgressChanged;
 
-            worker.WorkerReportsProgress = true;
+            Worker.WorkerReportsProgress = true;
 
-            worker.WorkerSupportsCancellation = true;
+            Worker.WorkerSupportsCancellation = true;
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            progressBar.Value = e.ProgressPercentage;
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (e.Error != null)
+            {
+                lblResult.Text = e.Error.Message;
+            }
+            else if(e.Cancelled)
+            {
+                lblResult.Text = "The current task was canceled!";
+            }
+            else
+            {
+                lblResult.Text = e.Result.ToString();
+            }
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            throw new NotImplementedException();
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            Calculate(e.Argument.ToString(), worker, e);
+
+            e.Result = CountedValue;
+            //e.Result = Calculate(e.Argument.ToString(), worker, e);
         }
 
         private void ChosePath(object obj, EventArgs e)
@@ -61,8 +86,25 @@ namespace Calculator.View
                 if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
                     lblChosenPath.Text = chosenPath = folderBrowserDialog.SelectedPath;
+
+                    Worker.RunWorkerAsync(chosenPath);
                 }
             }
+        }
+
+        private void Calculate(string chosenPath, BackgroundWorker worker, DoWorkEventArgs e)
+        {
+            var passParam = new Model.Counter.PassParam(chosenPath, worker, e);
+
+            DoWork?.Invoke(passParam, null);
+            //startFolder = new Model.Counter.ElementFolder(chosenPath, new Model.Counter.Parser());
+
+            //return CountedValue = startFolder.Count(worker, e);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Worker.CancelAsync();
         }
     }
 }

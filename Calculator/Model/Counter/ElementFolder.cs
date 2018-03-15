@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -33,11 +34,11 @@ namespace Calculator.Model.Counter
             }
         }
 
-        public override int Count()
+        public override int Count(BackgroundWorker worker = null, DoWorkEventArgs e = null)
         {
             int rezult = 0;
 
-            list.ForEach(item => rezult += item.Count());
+            list.ForEach(item => rezult += item.Count(worker, e));
 
             return rezult;
         }

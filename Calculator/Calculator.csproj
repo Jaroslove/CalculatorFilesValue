@@ -53,11 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exeptions\ParseFromStringToIntExeption.cs" />
+    <Compile Include="Model\Counter\CountingValues.cs" />
     <Compile Include="Model\Counter\Element.cs" />
     <Compile Include="Model\Counter\ElementFile.cs" />
     <Compile Include="Model\Counter\ElementFolder.cs" />
     <Compile Include="Model\Counter\IParser.cs" />
+    <Compile Include="Model\Counter\ManageCounting.cs" />
     <Compile Include="Model\Counter\Parser.cs" />
+    <Compile Include="Model\Counter\PassParam.cs" />
     <Compile Include="Model\IModelCalculator.cs" />
     <Compile Include="Model\ModelCalculator.cs" />
     <Compile Include="Presenter\StartCalculator.cs" />

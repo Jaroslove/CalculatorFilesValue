@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Calculator.Model.Counter
 {
@@ -10,7 +11,9 @@ namespace Calculator.Model.Counter
     {
         public string Path { get; set; }
 
-        public static int TotalNumberOfFiles { get; set; } = 0;
+        public static int TotalNumberOfFiles { get; set; }
+
+        public static int CountedNumberOfFiles { get; set; }
 
         private IParser parser;
 
@@ -20,15 +23,33 @@ namespace Calculator.Model.Counter
             this.parser = parser; 
         }
 
-        public virtual int Count()
+        public virtual int Count(BackgroundWorker worker = null, DoWorkEventArgs e = null)
         {
             var list = parser.Parse(Path);
 
             int rezult = 0;
 
+            if (worker != null)
+            {
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    list.ForEach(item => { rezult += item; });
+
+                    CountedNumberOfFiles++;
+                    Thread.Sleep(500);
+                    worker.ReportProgress((CountedNumberOfFiles / TotalNumberOfFiles) * 100);
+
+                    return rezult;
+                }
+            }
+
             list.ForEach(item => { rezult += item; });
 
-            TotalNumberOfFiles--;
+            CountedNumberOfFiles++;
 
             return rezult;
         }

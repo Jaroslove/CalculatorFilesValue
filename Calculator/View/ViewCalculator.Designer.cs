@@ -30,7 +30,7 @@
         {
             this.btnChosenPath = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.lblChosenPath = new System.Windows.Forms.Label();
             this.lblCanceled = new System.Windows.Forms.Label();
             this.lblProgress = new System.Windows.Forms.Label();
@@ -55,13 +55,14 @@
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // progressBar1
+            // progressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 98);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(359, 23);
-            this.progressBar1.TabIndex = 2;
+            this.progressBar.Location = new System.Drawing.Point(12, 98);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(359, 23);
+            this.progressBar.TabIndex = 2;
             // 
             // lblChosenPath
             // 
@@ -85,9 +86,9 @@
             this.lblProgress.AutoSize = true;
             this.lblProgress.Location = new System.Drawing.Point(10, 81);
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(140, 13);
+            this.lblProgress.Size = new System.Drawing.Size(158, 13);
             this.lblProgress.TabIndex = 5;
-            this.lblProgress.Text = "The progress of current task";
+            this.lblProgress.Text = "The progress of the current task";
             // 
             // lblResult
             // 
@@ -108,7 +109,7 @@
             this.Controls.Add(this.lblProgress);
             this.Controls.Add(this.lblCanceled);
             this.Controls.Add(this.lblChosenPath);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnChosenPath);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -124,7 +125,7 @@
 
         private System.Windows.Forms.Button btnChosenPath;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label lblChosenPath;
         private System.Windows.Forms.Label lblCanceled;
         private System.Windows.Forms.Label lblProgress;

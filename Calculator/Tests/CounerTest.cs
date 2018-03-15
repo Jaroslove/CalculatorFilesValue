@@ -15,20 +15,6 @@ namespace Calculator.Tests
         private Element element;
 
         [TestCase]
-        public void TotalNumberOfFilesAfterCount()
-        {
-            Element.TotalNumberOfFiles = 0;
-
-            element = new ElementFolder(@"C:\Users\1\Desktop\testCount", new Parser());
-
-            element.Count();
-
-            int actual = Element.TotalNumberOfFiles;
-
-            Assert.AreEqual(TOTALNUMBEROFFILESAFTERCOUNT, actual);
-        }
-
-        [TestCase]
         public void TotalNumberOfFiles()
         {
             Element.TotalNumberOfFiles = 0;
@@ -85,7 +71,6 @@ namespace Calculator.Tests
         #endregion
 
         #region expection        
-        private const int TOTALNUMBEROFFILESAFTERCOUNT = 0;
         private const int TOTALNUMBEROFFILES = 5;
         private const int COUNTFOFOLDERS = 4056;
         private const int COUNTFILE = 1016;

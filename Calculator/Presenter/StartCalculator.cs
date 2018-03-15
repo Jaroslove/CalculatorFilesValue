@@ -18,6 +18,12 @@ namespace Calculator.Presenter
         {
             this.model = model;
             this.view = view;
+            view.DoWork += View_DoWork;
+        }
+
+        private void View_DoWork(object sender, EventArgs e)
+        {
+            view.CountedValue = model.Calculate(sender as Model.Counter.PassParam);
         }
 
         public static Form GetCalculatorForm()
