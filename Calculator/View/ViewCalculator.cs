@@ -17,8 +17,6 @@ namespace Calculator.View
 
         private string chosenPath;
 
-        //Model.Counter.Element startFolder;
-
         public string ChosenPath { get => chosenPath; }
         public int CountedValue { get; set; }
 
@@ -65,8 +63,12 @@ namespace Calculator.View
             }
             else
             {
-                lblResult.Text = e.Result.ToString();
+                lblResult.Text = $"The number is: {e.Result}"; 
             }
+
+            btnChosenPath.Enabled = true;
+            btnCancel.Enabled = false;
+            lblResult.Visible = true;
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -76,7 +78,6 @@ namespace Calculator.View
             Calculate(e.Argument.ToString(), worker, e);
 
             e.Result = CountedValue;
-            //e.Result = Calculate(e.Argument.ToString(), worker, e);
         }
 
         private void ChosePath(object obj, EventArgs e)
@@ -86,6 +87,10 @@ namespace Calculator.View
                 if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
                     lblChosenPath.Text = chosenPath = folderBrowserDialog.SelectedPath;
+
+                    btnChosenPath.Enabled = false;
+                    btnCancel.Enabled = true;
+                    lblResult.Visible = false;
 
                     Worker.RunWorkerAsync(chosenPath);
                 }
@@ -97,14 +102,15 @@ namespace Calculator.View
             var passParam = new Model.Counter.PassParam(chosenPath, worker, e);
 
             DoWork?.Invoke(passParam, null);
-            //startFolder = new Model.Counter.ElementFolder(chosenPath, new Model.Counter.Parser());
-
-            //return CountedValue = startFolder.Count(worker, e);
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void CancelAsync(object sender, EventArgs e)
         {
             Worker.CancelAsync();
+
+            btnChosenPath.Enabled = true;
+            btnCancel.Enabled = false;
+            lblResult.Visible = true;
         }
     }
 }

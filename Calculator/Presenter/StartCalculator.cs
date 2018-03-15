@@ -23,7 +23,11 @@ namespace Calculator.Presenter
 
         private void View_DoWork(object sender, EventArgs e)
         {
-            view.CountedValue = model.Calculate(sender as Model.Counter.PassParam);
+            try
+            {
+                view.CountedValue = model.Calculate(sender as Model.Counter.PassParam);
+            }
+            catch { }             
         }
 
         public static Form GetCalculatorForm()

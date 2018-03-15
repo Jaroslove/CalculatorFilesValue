@@ -32,7 +32,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.lblChosenPath = new System.Windows.Forms.Label();
-            this.lblCanceled = new System.Windows.Forms.Label();
             this.lblProgress = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -49,13 +48,14 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Enabled = false;
             this.btnCancel.Location = new System.Drawing.Point(12, 42);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.CancelAsync);
             // 
             // progressBar
             // 
@@ -72,15 +72,6 @@
             this.lblChosenPath.Size = new System.Drawing.Size(0, 13);
             this.lblChosenPath.TabIndex = 3;
             // 
-            // lblCanceled
-            // 
-            this.lblCanceled.AutoSize = true;
-            this.lblCanceled.Location = new System.Drawing.Point(115, 47);
-            this.lblCanceled.Name = "lblCanceled";
-            this.lblCanceled.Size = new System.Drawing.Size(35, 13);
-            this.lblCanceled.TabIndex = 4;
-            this.lblCanceled.Text = "label2";
-            // 
             // lblProgress
             // 
             this.lblProgress.AutoSize = true;
@@ -95,9 +86,10 @@
             this.lblResult.AutoSize = true;
             this.lblResult.Location = new System.Drawing.Point(12, 139);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(35, 13);
+            this.lblResult.Size = new System.Drawing.Size(77, 13);
             this.lblResult.TabIndex = 6;
-            this.lblResult.Text = "label4";
+            this.lblResult.Text = "The number is:";
+            this.lblResult.Visible = false;
             // 
             // ViewCalculator
             // 
@@ -107,7 +99,6 @@
             this.ClientSize = new System.Drawing.Size(384, 161);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.lblProgress);
-            this.Controls.Add(this.lblCanceled);
             this.Controls.Add(this.lblChosenPath);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.btnCancel);
@@ -127,7 +118,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label lblChosenPath;
-        private System.Windows.Forms.Label lblCanceled;
         private System.Windows.Forms.Label lblProgress;
         private System.Windows.Forms.Label lblResult;
     }

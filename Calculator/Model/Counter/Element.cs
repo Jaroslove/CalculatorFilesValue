@@ -40,7 +40,7 @@ namespace Calculator.Model.Counter
                     list.ForEach(item => { rezult += item; });
 
                     CountedNumberOfFiles++;
-                    Thread.Sleep(500);
+
                     worker.ReportProgress((CountedNumberOfFiles / TotalNumberOfFiles) * 100);
 
                     return rezult;
